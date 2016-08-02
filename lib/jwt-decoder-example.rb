@@ -27,10 +27,11 @@ module JwtDecoder
     post '/decode' do
       begin
         hmac_secret = 'super_dooper_$ecrets'
-        payload = params['token']
-        logger.debug "token=#{payload}"
+        payload = JSON.parse(request.body.read)
+        token   = payload['token']
+        logger.debug "token=#{token}"
 
-        decoded_data = JWT.decode payload, hmac_secret, true, { :algorithm => 'HS256' }
+        decoded_data = JWT.decode token, hmac_secret, true, { :algorithm => 'HS256' }
         logger.debug = "decoded_data=#{decoded_data}"
 
         "success!"
