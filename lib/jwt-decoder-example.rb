@@ -8,15 +8,15 @@ module JwtDecoder
     end
 
     configure :test do
-      set :logging, Logger::ERROR
+      set :logging, ::Logger::ERROR
     end
 
     configure :development do
-      set :logging, Logger::DEBUG
+      set :logging, ::Logger::DEBUG
     end
 
     configure :production do
-      set :logging, Logger::INFO
+      set :logging, ::Logger::INFO
     end
 
     get '/' do
