@@ -1,5 +1,6 @@
 require 'sinatra/base'
 require 'jwt'
+require 'logger'
 
 module JwtDecoder
   class App < Sinatra::Base
