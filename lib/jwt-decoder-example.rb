@@ -26,7 +26,7 @@ module JwtDecoder
 
     post '/decode' do
       begin
-        hmac_secret = 'super_dooper_$ecrets'
+        hmac_secret = ENV['JWT_SECRET']
         payload = JSON.parse(request.body.read)
         token   = payload['token']
         logger.debug "token=#{token}"
