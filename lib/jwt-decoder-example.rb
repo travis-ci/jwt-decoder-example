@@ -7,6 +7,18 @@ module JwtDecoder
       enable :logging
     end
 
+    configure :test do
+      set :logging, Logger::ERROR
+    end
+
+    configure :development do
+      set :logging, Logger::DEBUG
+    end
+
+    configure :production do
+      set :logging, Logger::INFO
+    end
+
     get '/' do
       "Hello world!"
     end
