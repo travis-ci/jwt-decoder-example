@@ -26,13 +26,23 @@ module JwtDecoder
 
     post '/decode' do
       begin
+        # instead of ENV, the app would want to look up the secret for this payload
+        # by another means, say by payload['key_id'], which can be public wihout
+        # breach of security.
         hmac_secret  = ENV.fetch('JWT_SECRET', '')
         payload      = JSON.parse(request.body.read)
         token        = payload.fetch('token', '')
         logger.debug "token=#{token}"
 
+        # in addition, the app may choose to verify various claims of this token,
+        # such as 'iat' (token issue time), 'exp' (token expiration time)
+        # See https://github.com/jwt/ruby-jwt#support-for-reserved-claim-namess
+        # if the claims *are* verified, it is best to communicate this with the user
         decoded_data = JWT.decode token, hmac_secret, true, { :algorithm => 'HS256' }
-        logger.debug = "decoded_data=#{decoded_data}"
+        logger.debug "decoded_data=#{decoded_data}"
+
+        # Do stuff with decoded_data
+        # decoded_data[0] is the payload
 
         "success!"
       rescue => e
