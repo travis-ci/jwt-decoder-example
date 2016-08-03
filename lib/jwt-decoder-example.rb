@@ -35,7 +35,10 @@ module JwtDecoder
         logger.debug = "decoded_data=#{decoded_data}"
 
         "success!"
-      rescue
+      rescue => e
+        logger.debug e.backtrace.join("\n")
+
+        status 500
         "failure!"
       end
     end
