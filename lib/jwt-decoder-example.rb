@@ -28,7 +28,7 @@ module JwtDecoder
       begin
         hmac_secret = ENV['JWT_SECRET']
         payload = JSON.parse(request.body.read)
-        token   = payload['token']
+        token   = payload.fetch('token', '')
         logger.debug "token=#{token}"
 
         decoded_data = JWT.decode token, hmac_secret, true, { :algorithm => 'HS256' }
