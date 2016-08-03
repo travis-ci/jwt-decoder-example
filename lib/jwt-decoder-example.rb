@@ -4,6 +4,8 @@ require 'logger'
 
 module JwtDecoder
   class App < Sinatra::Base
+    ISSUER = 'Travis CI, GmbH'
+
     configure :production, :development do
       enable :logging
     end
@@ -38,7 +40,9 @@ module JwtDecoder
         # such as 'iat' (token issue time), 'exp' (token expiration time)
         # See https://github.com/jwt/ruby-jwt#support-for-reserved-claim-namess
         # if the claims *are* verified, it is best to communicate this with the user
-        decoded_data = JWT.decode token, hmac_secret, true, { :algorithm => 'HS256' }
+        decoded_data = JWT.decode token, hmac_secret, true, {
+          :iss => ISSUER, :verify_iss => true, :algorithm => 'HS256'
+        }
 
         # Do stuff with decoded_data
         # decoded_data[0] is the payload
