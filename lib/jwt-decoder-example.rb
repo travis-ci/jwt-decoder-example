@@ -38,7 +38,7 @@ module JwtDecoder
 
         # in addition, the app may choose to verify various claims of this token,
         # such as 'iat' (token issue time), 'exp' (token expiration time)
-        # See https://github.com/jwt/ruby-jwt#support-for-reserved-claim-namess
+        # See https://github.com/jwt/ruby-jwt#support-for-reserved-claim-names
         # if the claims *are* verified, it is best to communicate this with the user
         decoded_data = JWT.decode token, hmac_secret, true, {
           :iss => ISSUER, :verify_iss => true, :verify_iat => true, :algorithm => 'HS256'
