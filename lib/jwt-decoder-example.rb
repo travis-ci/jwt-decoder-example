@@ -49,7 +49,13 @@ module JwtDecoder
         logger.debug "decoded_data=#{decoded_data[0]}"
 
         "success!"
+
+      rescue JWT::DecodeError => e
+        logger.debug "exception=#{e.class} message=\"#{e.message}\""
+        status 400
+        "JWT is invalid"
       rescue => e
+        logger.debug "exception=#{e.class} message=\"#{e.message}\""
         logger.debug e.backtrace.join("\n")
 
         status 500
