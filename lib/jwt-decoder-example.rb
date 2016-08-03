@@ -41,7 +41,7 @@ module JwtDecoder
         # See https://github.com/jwt/ruby-jwt#support-for-reserved-claim-namess
         # if the claims *are* verified, it is best to communicate this with the user
         decoded_data = JWT.decode token, hmac_secret, true, {
-          :iss => ISSUER, :verify_iss => true, :algorithm => 'HS256'
+          :iss => ISSUER, :verify_iss => true, :verify_iat => true, :algorithm => 'HS256'
         }
 
         # Do stuff with decoded_data
