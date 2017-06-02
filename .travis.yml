@@ -2,6 +2,8 @@ language: ruby
 
 sudo: false
 
+dist: trusty
+
 rvm:
   - '2.1.5'
 
@@ -17,7 +19,7 @@ deployment_provider: &deployment_provider
   provider: heroku
   strategy: api
   app: jwt-decoder-example # restate the default; to check the option handling
-  api_token:
+  api_key:
     secure: "nfecRXOgaqStk3jqx4XeBC2JhnaK9V3ZBsy2HOFd9wysJreztSMxupSR7gG7I/GizfW+tDSc/ioCzK9LCV8rzVgIN7XCRQaWlqjHOjYdx9OX8FxIe2u6UN+4QDXPoHVrPSnhyveSraECOfcyDqKaC/ocDkht8a9Ecr4wg5qYaVyKykh8tVk33G/hu15gVT6nPBLnJg2gru/tCYeR31J1qYvFVzJSp5FJMdVQQZ1ROamC0OoQfChq9Ljq/VXbPMPGdAr0rUWGpIVVFSV7dGe4gGQq6PRCFrB2FQ6gV5IFcY1N6FtQBUqxgiRsm+r/pLO/qiExerEpNILekVWspZF3ri1vdZRj2VweC0VWYKOO5abJG461sVzHz6Un11CcAqDzLvXI/5lyRJchxi23fiH9z4KWP3zGfCk76EZm+0q+RcLYHbDzjTmfW1/hwFZ1mIp+phHlf4WjHsJIYKN3Al2E8JuWmw+0GfjCHIELBzXNa4AZlIIj5QmgdrrgKTp0q19O5lbPmkoOzZVwMHadZOnNz3dENaYoi2xbeAb39lUR/+TtTVkh8CTLUC+zdxUhNYOuteaNsvwQzDdjAPXPu8QGZ0iEbGkuZ7I04WwFnVnaigsjVkvISt3+rJI9HUOrg9e72rPZMDYp1gWyUCpRfX6M3CTy/rmygB4TZojYFU2rWuo="
   run:
     - date
@@ -28,7 +30,6 @@ deployment_provider: &deployment_provider
   on:
     branch: default
 
-api_token: &api_token
 deploy:
   - <<: *deployment_provider
   - <<: *deployment_provider
