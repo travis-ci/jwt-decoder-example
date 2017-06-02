@@ -26,7 +26,7 @@ deployment_provider: &deployment_provider
     - restart
     - date
   edge:
-    branch: master
+    branch: heroku-v3-all
   on:
     branch: default
 
@@ -36,5 +36,3 @@ deploy:
     strategy: git
   - <<: *deployment_provider
     strategy: git-ssh
-  - <<: *deployment_provider
-    strategy: anvil
