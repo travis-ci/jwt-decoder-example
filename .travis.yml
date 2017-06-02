@@ -25,7 +25,8 @@ deployment_provider: &deployment_provider
     - date
     - restart
     - date
-  edge: true
+  edge:
+    branch: master
   on:
     branch: default
 
