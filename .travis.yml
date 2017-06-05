@@ -25,8 +25,6 @@ deployment_provider: &deployment_provider
     - date
     - restart
     - date
-  edge:
-    branch: heroku-v3-all
   on:
     branch: default
 
